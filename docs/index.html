@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Autonomy Preserving AI (APAI)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <!-- Navbar (minimal) -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-logo">APAI</div>
+    <div class="navbar-links">
+      <a href="#problem">Problem</a>
+      <a href="#framework">Framework</a>
+      <a href="#about">Team</a>
+      <a href="#about">Collaborate</a>
+    </div>
+  </nav>
+
+  <!-- Value Proposition -->
+  <section class="hero" id="hero">
+    <div class="hero-bg" style="background:linear-gradient(120deg,#eaf7f4 60%,#fffbe6 100%);position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;opacity:0.7;"></div>
+    <div class="hero-content" style="position:relative;z-index:1;max-width:900px;margin:0 auto;padding:64px 0 48px 0;text-align:center;">
+      <div class="hero-title" style="font-size:3.2rem;font-family:'Playfair Display',serif;font-weight:900;color:#0f6e56;margin-bottom:24px;letter-spacing:1px;">Autonomy Preserving AI (APAI)</div>
+      <div class="hero-subtitle" style="font-size:1.7rem;max-width:700px;margin:0 auto 24px auto;color:#1a1a2e;font-weight:600;line-height:1.4;">
+        Adaptive AI middleware for researchers, students, and professionals who want the power of AI without losing their own skills. APAI uniquely preserves your capability by modulating help based on your real-time engagement.
+      </div>
+      <div class="hero-desc" style="font-size:1.25rem;max-width:700px;margin:0 auto 40px auto;color:#ba7517;font-weight:500;">
+        <em>“AI that helps you, but never lets you silently decay.”</em>
+      </div>
+      <div class="hero-grid" style="display:flex;gap:24px;justify-content:center;max-width:700px;margin:0 auto 0 auto;">
+        <div class="hero-box dag-box" style="flex:1;background:#eaf7f4;padding:32px 18px;text-align:center;border-radius:18px;box-shadow:0 2px 12px rgba(15,110,86,0.08);transition:transform 0.22s cubic-bezier(.4,2,.6,1),box-shadow 0.22s;cursor:pointer;">
+          <div style="font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:700;color:#0f6e56;margin-bottom:6px;">DAG</div>
+          <div style="font-size:1rem;color:#1a1a2e;line-height:1.5;">Prerequisite skill graph</div>
+        </div>
+        <div class="hero-box llm-box" style="flex:1;background:#fffbe6;padding:32px 18px;text-align:center;border-radius:18px;box-shadow:0 2px 12px rgba(186,117,23,0.08);transition:transform 0.22s cubic-bezier(.4,2,.6,1),box-shadow 0.22s;cursor:pointer;">
+          <div style="font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:700;color:#ba7517;margin-bottom:6px;">LLM</div>
+          <div style="font-size:1rem;color:#1a1a2e;line-height:1.5;">Adaptive prompt modulation</div>
+        </div>
+        <div class="hero-box agent-box" style="flex:1;background:#f0faf7;padding:32px 18px;text-align:center;border-radius:18px;box-shadow:0 2px 12px rgba(15,110,86,0.08);transition:transform 0.22s cubic-bezier(.4,2,.6,1),box-shadow 0.22s;cursor:pointer;">
+          <div style="font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:700;color:#0f6e56;margin-bottom:6px;">Agent</div>
+          <div style="font-size:1rem;color:#1a1a2e;line-height:1.5;">Autonomous capability monitor</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Early Access Signup -->
+  <section id="signup" class="fade-section" style="background:#fff;padding:48px 0 32px 0;">
+    <div class="container" style="max-width:520px;margin:0 auto;text-align:center;">
+      <div class="section-label" style="color:#0f6e56;font-size:0.85rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;">Early Access</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:#1a1a2e;margin-bottom:18px;">Sign up to be notified when APAI launches</h3>
+      <form onsubmit="event.preventDefault();alert('Thank you! You will be notified.');" style="display:flex;gap:12px;justify-content:center;align-items:center;margin-bottom:12px;">
+        <input id="signup-email" type="email" placeholder="Enter your email" required style="padding:12px 16px;font-size:1.1rem;border-radius:6px;border:1.5px solid #0f6e56;outline:none;flex:1;" />
+        <button type="submit" class="btn btn-primary" style="padding:12px 28px;font-size:1.1rem;">Get Early Access</button>
+      </form>
+      <div id="signup-feedback" style="color:#0f6e56;font-weight:600;margin-top:8px;"></div>
+    </div>
+  </section>
+
+  <!-- Infographic Section -->
+  <section id="infographic" style="background:#eaf7f4;padding:48px 0 32px 0;">
+    <div class="container" style="max-width:900px;margin:0 auto;text-align:center;">
+      <iframe src="assets/apai_infographic_v4.html" style="width:100%;height:600px;border:none;"></iframe>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background:#0f6e56;color:#fff;text-align:center;padding:24px 0;font-size:1rem;">
+    &copy; 2026 Autonomy Preserving AI (APAI). All rights reserved.
+  </footer>
+</body>
+</html>

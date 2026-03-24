@@ -1,0 +1,61 @@
+/* APAI Landing Page Styles */
+:root {
+  --charcoal: #1a1a2e;
+  --teal: #0f6e56;
+  --amber: #ba7517;
+  --light-teal: #eaf7f4;
+  --white: #fff;
+  --shadow: 0 4px 24px rgba(16, 110, 86, 0.08);
+}
+html {
+  scroll-behavior: smooth;
+  background: var(--white);
+}
+body {
+  margin: 0;
+  font-family: 'Inter', Arial, sans-serif;
+  color: var(--charcoal);
+  background: var(--white);
+}
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  z-index: 100;
+  padding: 0 40px;
+  border-bottom: 2px solid var(--teal);
+  transition: background 0.3s, box-shadow 0.3s, height 0.3s;
+}
+.navbar.scrolled {
+  background: var(--white);
+  box-shadow: 0 2px 12px rgba(26,26,46,0.08);
+  height: 56px;
+}
+.navbar-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--teal);
+  letter-spacing: 2px;
+}
+.navbar-links {
+  display: flex;
+  gap: 32px;
+}
+.navbar-links a {
+  color: var(--charcoal);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+}
+.navbar-links a:hover {
+  color: var(--teal);
+}
+ .hero {
+  min-height: 100vh;
+}
