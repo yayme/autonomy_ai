@@ -377,7 +377,19 @@ section {
     text-align: center;
   }
   .navbar {
-    padding: 0 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 0 8px;
+  }
+  .navbar-logo {
+    margin-bottom: 8px;
+    font-size: 1.5rem;
+  }
+  .navbar-links {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
   }
 }
 @media (max-width: 600px) {
@@ -395,6 +407,24 @@ section {
   }
   .footer {
     padding: 18px 8px;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 0 4px;
+  }
+  .navbar-logo {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+  }
+  .navbar-links {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
   }
 }
 .fade-section {
