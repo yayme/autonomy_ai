@@ -7,11 +7,11 @@ A proof of concept implementation of a middleware framework that monitors user c
 
 ## Scripts
 
-### `apai_estimation_poc.py` — Discrete-time EKF simulation
+### `apai_demo/apai_estimation_poc.py` — Discrete-time EKF simulation
 
 Runs three competing scenarios across a three-node prerequisite skill chain (Arithmetic → Probability → Markov Chain) using an Extended Kalman Filter to estimate latent capability from noisy behavioral observations at each interaction step.
 
-### `main.py` — Continuous-time ODE simulation + LLM modulation
+### `apai_demo/main.py` — Continuous-time ODE simulation + LLM modulation
 
 Runs the same three-policy comparison using a continuous-time ODE solver, and additionally queries the Gemini 2.5 Flash API to demonstrate how the assistance deterrent level translates into real LLM behavior via system prompt modulation.
 
