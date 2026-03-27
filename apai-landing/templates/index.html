@@ -6,10 +6,118 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Inter:400,600,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      color: #1a1a2e;
+      overflow-x: hidden;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      box-sizing: border-box;
+      z-index: 1000;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .navbar.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+    .navbar-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #0f6e56;
+    }
+    .navbar-links {
+      display: flex;
+      gap: 24px;
+    }
+    .navbar-links a {
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .navbar-links a:hover {
+      color: #0f6e56;
+    }
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+    }
+    .btn-primary {
+      background: #0f6e56;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover {
+      background: #0b503e;
+    }
+    .fade-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .fade-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .grid-3, .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .hero-title {
+        font-size: 2.4rem !important;
+      }
+      .hero-subtitle {
+        font-size: 1.2rem !important;
+      }
+      .hero-grid {
+        flex-direction: column;
+      }
+      .navbar {
+        padding: 16px 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- Navbar (minimal) -->
   <nav class="navbar" id="navbar">
     <div class="navbar-logo">APAI</div>
     <div class="navbar-links">
@@ -20,27 +128,26 @@
     </div>
   </nav>
 
-  <!-- Value Proposition -->
   <section class="hero" id="hero">
-    <div class="hero-bg" style="background:linear-gradient(120deg,#eaf7f4 60%,#fffbe6 100%);position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;opacity:0.7;"></div>
-    <div class="hero-content" style="position:relative;z-index:1;max-width:900px;margin:0 auto;padding:64px 0 48px 0;text-align:center;">
+    <div style="background:linear-gradient(120deg,#eaf7f4 60%,#fffbe6 100%);position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;opacity:0.7;"></div>
+    <div class="container" style="position:relative;z-index:1;text-align:center;">
       <div class="hero-title" style="font-size:3.2rem;font-family:'Playfair Display',serif;font-weight:900;color:#0f6e56;margin-bottom:24px;letter-spacing:1px;">Autonomy Preserving AI (APAI)</div>
       <div class="hero-subtitle" style="font-size:1.7rem;max-width:700px;margin:0 auto 24px auto;color:#1a1a2e;font-weight:600;line-height:1.4;">
         Adaptive AI middleware for researchers, students, and professionals who want the power of AI without losing their own skills. APAI uniquely preserves your capability by modulating help based on your real-time engagement.
       </div>
-      <div class="hero-desc" style="font-size:1.25rem;max-width:700px;margin:0 auto 40px auto;color:#ba7517;font-weight:500;">
+      <div style="font-size:1.25rem;max-width:700px;margin:0 auto 40px auto;color:#ba7517;font-weight:500;">
         <em>“AI that helps you, but never lets you silently decay.”</em>
       </div>
-      <div class="hero-grid" style="display:flex;gap:24px;justify-content:center;max-width:700px;margin:0 auto 0 auto;">
-        <div class="hero-box dag-box" style="flex:1;background:#eaf7f4;padding:32px 18px;text-align:center;border-radius:18px;box-shadow:0 2px 12px rgba(15,110,86,0.08);transition:transform 0.22s cubic-bezier(.4,2,.6,1),box-shadow 0.22s;cursor:pointer;">
+      <div class="hero-grid" style="display:flex;gap:24px;justify-content:center;max-width:800px;margin:0 auto;">
+        <div class="hero-box" style="flex:1;background:#eaf7f4;padding:32px 18px;text-align:center;border-radius:18px;box-shadow:0 2px 12px rgba(15,110,86,0.08);transition:transform 0.22s cubic-bezier(.4,2,.6,1),box-shadow 0.22s;cursor:pointer;">
           <div style="font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:700;color:#0f6e56;margin-bottom:6px;">DAG</div>
           <div style="font-size:1rem;color:#1a1a2e;line-height:1.5;">Prerequisite skill graph</div>
         </div>
-        <div class="hero-box llm-box" style="flex:1;background:#fffbe6;padding:32px 18px;text-align:center;border-radius:18px;box-shadow:0 2px 12px rgba(186,117,23,0.08);transition:transform 0.22s cubic-bezier(.4,2,.6,1),box-shadow 0.22s;cursor:pointer;">
+        <div class="hero-box" style="flex:1;background:#fffbe6;padding:32px 18px;text-align:center;border-radius:18px;box-shadow:0 2px 12px rgba(186,117,23,0.08);transition:transform 0.22s cubic-bezier(.4,2,.6,1),box-shadow 0.22s;cursor:pointer;">
           <div style="font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:700;color:#ba7517;margin-bottom:6px;">LLM</div>
           <div style="font-size:1rem;color:#1a1a2e;line-height:1.5;">Adaptive prompt modulation</div>
         </div>
-        <div class="hero-box agent-box" style="flex:1;background:#f0faf7;padding:32px 18px;text-align:center;border-radius:18px;box-shadow:0 2px 12px rgba(15,110,86,0.08);transition:transform 0.22s cubic-bezier(.4,2,.6,1),box-shadow 0.22s;cursor:pointer;">
+        <div class="hero-box" style="flex:1;background:#f0faf7;padding:32px 18px;text-align:center;border-radius:18px;box-shadow:0 2px 12px rgba(15,110,86,0.08);transition:transform 0.22s cubic-bezier(.4,2,.6,1),box-shadow 0.22s;cursor:pointer;">
           <div style="font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:700;color:#0f6e56;margin-bottom:6px;">Agent</div>
           <div style="font-size:1rem;color:#1a1a2e;line-height:1.5;">Autonomous capability monitor</div>
         </div>
@@ -48,96 +155,68 @@
     </div>
   </section>
 
-  <!-- Early Access Signup -->
-  <section id="signup" class="fade-section" style="background:#fff;padding:48px 0 32px 0;">
-    <div class="container" style="max-width:520px;margin:0 auto;text-align:center;">
-      <div class="section-label" style="color:#0f6e56;font-size:0.85rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;">Early Access</div>
-      <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:#1a1a2e;margin-bottom:18px;">Sign up to be notified when APAI launches</h3>
-      <form onsubmit="event.preventDefault();alert('Thank you! You will be notified.');" style="display:flex;gap:12px;justify-content:center;align-items:center;margin-bottom:12px;">
+  <section id="signup" class="fade-section" style="background:#fff;padding:64px 0;">
+    <div class="container" style="max-width:520px;text-align:center;">
+      <div style="color:#0f6e56;font-size:0.85rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;">Early Access</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:#1a1a2e;margin-bottom:24px;">Sign up to be notified when APAI launches</h3>
+      <form id="signup-form" style="display:flex;gap:12px;justify-content:center;align-items:center;margin-bottom:12px;">
         <input id="signup-email" type="email" placeholder="Enter your email" required style="padding:12px 16px;font-size:1.1rem;border-radius:6px;border:1.5px solid #0f6e56;outline:none;flex:1;" />
-        <button type="submit" class="btn btn-primary" style="padding:12px 28px;font-size:1.1rem;">Get Early Access</button>
+        <button type="submit" class="btn-primary" style="padding:12px 28px;font-size:1.1rem;">Get Early Access</button>
       </form>
       <div id="signup-feedback" style="color:#0f6e56;font-weight:600;margin-top:8px;"></div>
-      <script>
-        document.querySelector('form').addEventListener('submit', async function(e) {
-          e.preventDefault();
-          const email = document.getElementById('signup-email').value;
-          const feedback = document.getElementById('signup-feedback');
-          feedback.textContent = '';
-          try {
-            const res = await fetch('/signup', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ email })
-            });
-            const data = await res.json();
-            if (data.success) {
-              feedback.textContent = 'Thank you! You will be notified.';
-              document.getElementById('signup-email').value = '';
-            } else {
-              feedback.textContent = data.message || 'Signup failed.';
-            }
-          } catch (err) {
-            feedback.textContent = 'Error submitting email.';
-          }
-        });
-      </script>
-      <div style="color:#0f6e56;font-weight:600;">Be the first to try APAI when it launches.</div>
+      <div style="color:#0f6e56;font-weight:600;margin-top:16px;">Be the first to try APAI when it launches.</div>
     </div>
   </section>
 
-
-  <!-- The Problem -->
-  <section id="problem" class="fade-section" style="background:#f8f9fa;padding:80px 0;">
+  <section id="problem" class="fade-section" style="background:#f8f9fa;padding:100px 0;">
     <div class="container">
-      <div class="section-label" style="color:#ba7517;font-size:0.85rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;">The Problem</div>
+      <div style="color:#ba7517;font-size:0.85rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;">The Problem</div>
       <h2 style="font-family:'Playfair Display',serif;font-size:2.2rem;color:#1a1a2e;max-width:620px;line-height:1.3;margin-bottom:16px;">Every AI interaction makes a silent trade</h2>
       <p style="font-size:1.1rem;color:#444;max-width:640px;line-height:1.7;margin-bottom:48px;">When an AI solves a problem for you, you get the answer. But you also lose the practice. No single interaction causes harm. The accumulation does. Over thousands of sessions, the independent reasoning you believe you possess quietly erodes — invisible until the AI is unavailable and the skill is gone.</p>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;">
+      <div class="grid-3">
         <div style="background:#fff;border-left:4px solid #ba7517;border-radius:0 12px 12px 0;padding:28px 24px;">
           <div style="font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:10px;">The atrophy basin</div>
-          <p style="font-size:0.95rem;color:#555;line-height:1.6;">Once proficiency drops below a critical threshold, recovery becomes impossible even with renewed effort. The system has crossed into permanent atrophy.</p>
+          <p style="font-size:0.95rem;color:#555;line-height:1.6;margin:0;">Once proficiency drops below a critical threshold, recovery becomes impossible even with renewed effort. The system has crossed into permanent atrophy.</p>
         </div>
         <div style="background:#fff;border-left:4px solid #ba7517;border-radius:0 12px 12px 0;padding:28px 24px;">
           <div style="font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:10px;">Measured skill decline</div>
-          <p style="font-size:0.95rem;color:#555;line-height:1.6;">A 2023 study on GitHub Copilot users found measurable reductions in independent problem-solving ability after sustained use. This is not hypothetical.</p>
+          <p style="font-size:0.95rem;color:#555;line-height:1.6;margin:0;">A 2023 study on GitHub Copilot users found measurable reductions in independent problem-solving ability after sustained use. This is not hypothetical.</p>
         </div>
         <div style="background:#fff;border-left:4px solid #ba7517;border-radius:0 12px 12px 0;padding:28px 24px;">
           <div style="font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:10px;">Prerequisite cascades</div>
-          <p style="font-size:0.95rem;color:#555;line-height:1.6;">Losing a foundational skill raises the decay rate of every downstream domain simultaneously. One gap silently amplifies into many.</p>
+          <p style="font-size:0.95rem;color:#555;line-height:1.6;margin:0;">Losing a foundational skill raises the decay rate of every downstream domain simultaneously. One gap silently amplifies into many.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- The Framework -->
-  <section id="framework" class="fade-section" style="padding:80px 0;background:#fff;">
+  <section id="framework" class="fade-section" style="padding:100px 0;background:#fff;">
     <div class="container">
-      <div class="section-label" style="color:#0f6e56;font-size:0.85rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;">The Solution</div>
+      <div style="color:#0f6e56;font-size:0.85rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;">The Solution</div>
       <h2 style="font-family:'Playfair Display',serif;font-size:2.2rem;color:#1a1a2e;max-width:620px;line-height:1.3;margin-bottom:16px;">APAI sits between you and the AI</h2>
       <p style="font-size:1.1rem;color:#444;max-width:640px;line-height:1.7;margin-bottom:56px;">Rather than maximizing helpfulness, APAI optimizes for the joint objective of task utility and long-run cognitive autonomy. It treats human capability as a resource to be actively conserved, not silently consumed.</p>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1.5px solid #e0e0e0;border-radius:16px;overflow:hidden;">
-        <div style="padding:36px 28px;border-right:1.5px solid #e0e0e0;">
+      <div class="grid-3" style="gap:0;border:1.5px solid #e0e0e0;border-radius:16px;overflow:hidden;">
+        <div style="padding:36px 28px;border-right:1.5px solid #e0e0e0;border-bottom:1px solid transparent;">
           <div style="width:36px;height:36px;background:#eaf7f4;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
             <span style="color:#0f6e56;font-weight:700;font-size:1rem;">1</span>
           </div>
           <div style="font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:10px;">Capability estimation</div>
-          <p style="font-size:0.92rem;color:#555;line-height:1.65;">A fast online learning algorithm tracks your latent proficiency in real time using behavioral signals: how long you take to respond, how much you edit the AI output, how actively you engage with follow-up questions etc. Over time it creates a profile of your current skills.</p>
+          <p style="font-size:0.92rem;color:#555;line-height:1.65;margin:0;">A fast online learning algorithm tracks your latent proficiency in real time using behavioral signals: how long you take to respond, how much you edit the AI output, how actively you engage with follow-up questions etc. Over time it creates a profile of your current skills.</p>
         </div>
-        <div style="padding:36px 28px;border-right:1.5px solid #e0e0e0;">
+        <div style="padding:36px 28px;border-right:1.5px solid #e0e0e0;border-bottom:1px solid transparent;">
           <div style="width:36px;height:36px;background:#eaf7f4;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
             <span style="color:#0f6e56;font-weight:700;font-size:1rem;">2</span>
           </div>
           <div style="font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:10px;">Dynamic deterrent levels</div>
-          <p style="font-size:0.92rem;color:#555;line-height:1.65;">When estimated capability approaches the critical threshold, the policy reactively reduces AI assistance to keep you engaged. As capability recovers, assistance relaxes. The system responds continuously, not periodically.</p>
+          <p style="font-size:0.92rem;color:#555;line-height:1.65;margin:0;">When estimated capability approaches the critical threshold, the policy reactively reduces AI assistance to keep you engaged. As capability recovers, assistance relaxes. The system responds continuously, not periodically.</p>
         </div>
         <div style="padding:36px 28px;">
           <div style="width:36px;height:36px;background:#eaf7f4;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
             <span style="color:#0f6e56;font-weight:700;font-size:1rem;">3</span>
           </div>
           <div style="font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:10px;">Adaptive system prompting</div>
-          <p style="font-size:0.92rem;color:#555;line-height:1.65;">The deterrent level maps directly to how AI will answer. High skill: complete structured solution. Recovering: Gives partial answer and guidance. Critically low: teach the prerequisite concept and quiz before engaging the problem.</p>
+          <p style="font-size:0.92rem;color:#555;line-height:1.65;margin:0;">The deterrent level maps directly to how AI will answer. High skill: complete structured solution. Recovering: Gives partial answer and guidance. Critically low: teach the prerequisite concept and quiz before engaging the problem.</p>
         </div>
       </div>
 
@@ -147,108 +226,120 @@
     </div>
   </section>
 
-  <section id="about" class="fade-section" style="padding:80px 0;background:#f8f9fa;">
-    <div class="container" style="max-width:900px;">
-      <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center;">
-        <div style="padding-left:18px;">
-          <div style="font-size:0.8rem;font-weight:600;color:#0f6e56;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;">
-            Origin
-          </div>
-          <h2 style="font-family:'Playfair Display',serif;font-size:2rem;color:#1a1a2e;line-height:1.3;margin-bottom:22px;">
-            Built to solve a problem most people do not know they have
-          </h2>
-          <p style="font-size:1.05rem;color:#444;line-height:1.85;margin-bottom:36px;max-width:420px;">
-            APAI started from a simple observation: AI assistance is everywhere, but nobody is measuring what it costs. We are building the system that does.
-          </p>
-          <div style="display:flex;gap:14px;flex-wrap:wrap;">
-            <a href="mailto:adnansadik235@kaist.ac.kr" id="email-btn"
-               style="display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border:1.5px solid #0f6e56;border-radius:8px;color:#0f6e56;background:rgba(15,110,86,0.07);cursor:pointer;font-size:1rem;font-weight:600;transition:all 0.2s;text-decoration:none;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="4" width="20" height="16" rx="3"/>
-                <path d="M2 7l10 7 10-7"/>
-              </svg>
-              Get in touch
-            </a>
-          </div>
+  <section id="about" class="fade-section" style="padding:100px 0;background:#f8f9fa;">
+    <div class="container grid-2">
+      <div>
+        <div style="font-size:0.8rem;font-weight:600;color:#0f6e56;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;">
+          Origin
         </div>
-        <div style="display:flex;flex-direction:column;gap:20px;">
-          <div style="background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:28px 24px;">
-            <div style="font-size:0.8rem;color:#6b7280;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Status</div>
-            <div style="font-size:1.05rem;color:#1a1a2e;font-weight:500;">Early stage</div>
-          </div>
-          <div style="background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:28px 24px;">
-            <div style="font-size:0.8rem;color:#6b7280;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Looking for</div>
-            <div style="font-size:1.05rem;color:#1a1a2e;font-weight:500;line-height:1.65;">Research collaborators, pilot study participants, and institutions interested in deploying APAI in tutoring or professional training</div>
-          </div>
-          <div style="background:#eaf7f4;border:1px solid #0f6e56;border-radius:12px;padding:28px 24px;">
-            <div style="font-size:0.8rem;color:#0f6e56;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Core insight</div>
-            <div style="font-size:1.05rem;color:#0f6e56;line-height:1.65;">Autonomy preservation is not in tension with helpfulness. It is a deeper form of it.</div>
-          </div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:2rem;color:#1a1a2e;line-height:1.3;margin-bottom:22px;">
+          Built to solve a problem most people do not know they have
+        </h2>
+        <p style="font-size:1.05rem;color:#444;line-height:1.85;margin-bottom:36px;max-width:420px;">
+          APAI started from a simple observation: AI assistance is everywhere, but nobody is measuring what it costs. We are building the system that does.
+        </p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+          <a href="mailto:adnansadik235@kaist.ac.kr" id="email-btn"
+             style="display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border:1.5px solid #0f6e56;border-radius:8px;color:#0f6e56;background:rgba(15,110,86,0.07);cursor:pointer;font-size:1rem;font-weight:600;transition:all 0.2s;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="4" width="20" height="16" rx="3"/>
+              <path d="M2 7l10 7 10-7"/>
+            </svg>
+            Get in touch
+          </a>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div style="background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:28px 24px;">
+          <div style="font-size:0.8rem;color:#6b7280;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Status</div>
+          <div style="font-size:1.05rem;color:#1a1a2e;font-weight:500;">Early stage</div>
+        </div>
+        <div style="background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:28px 24px;">
+          <div style="font-size:0.8rem;color:#6b7280;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Looking for</div>
+          <div style="font-size:1.05rem;color:#1a1a2e;font-weight:500;line-height:1.65;">Research collaborators, pilot study participants, and institutions interested in deploying APAI in tutoring or professional training</div>
+        </div>
+        <div style="background:#eaf7f4;border:1px solid #0f6e56;border-radius:12px;padding:28px 24px;">
+          <div style="font-size:0.8rem;color:#0f6e56;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Core insight</div>
+          <div style="font-size:1.05rem;color:#0f6e56;line-height:1.65;">Autonomy preservation is not in tension with helpfulness. It is a deeper form of it.</div>
         </div>
       </div>
     </div>
   </section>
 
-<footer id="contact" style="background:#1a1a2e;padding:48px 0;border-top:3px solid #0f6e56;">
-<footer class="footer">
-  <div>
-    <div style="font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:6px;">Autonomy Preserving AI</div>
-    <div style="font-size:0.85rem;color:#9ca3af;">&copy; Adnan Sadik, 2026</div>
-  </div>
-</footer>
+  <footer style="background:#1a1a2e;padding:48px 0;border-top:3px solid #0f6e56;">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;color:#fff;">
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:6px;">Autonomy Preserving AI</div>
+        <div style="font-size:0.85rem;color:#9ca3af;">&copy; Adnan Sadik, 2026</div>
+      </div>
+    </div>
+  </footer>
 
-<script>
-  function showEmail() {
-    const reveal = document.getElementById('email-reveal');
-    const btn = document.getElementById('email-btn');
-    reveal.style.display = reveal.style.display === 'none' ? 'block' : 'none';
-    btn.textContent = reveal.style.display === 'block' ? 'Hide' : 'Contact';
-  }
-
-  document.querySelectorAll('.navbar-links a').forEach(link => {
-    link.addEventListener('click', function(e) {
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth' });
+  <script>
+    document.getElementById('signup-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('signup-email').value;
+      const feedback = document.getElementById('signup-feedback');
+      feedback.textContent = '';
+      try {
+        const res = await fetch('/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+        const data = await res.json();
+        if (data.success) {
+          feedback.textContent = 'Thank you! You will be notified.';
+          document.getElementById('signup-email').value = '';
+        } else {
+          feedback.textContent = data.message || 'Signup failed.';
+        }
+      } catch (err) {
+        feedback.textContent = 'Error submitting email.';
       }
     });
-  });
 
-  // Hero box hover effect
-  document.querySelectorAll('.hero-box').forEach(box => {
-    box.addEventListener('mouseenter', function() {
+    document.querySelectorAll('.navbar-links a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    const applyHover = function() {
       this.style.transform = 'scale(1.07)';
       this.style.boxShadow = '0 8px 32px 0 rgba(15,110,86,0.18), 0 0 0 4px #0f6e5633';
-    });
-    box.addEventListener('mouseleave', function() {
+    };
+
+    const removeHover = function() {
       this.style.transform = '';
       this.style.boxShadow = '0 2px 12px rgba(15,110,86,0.08)';
-    });
-    // Touch devices: tap to animate
-    box.addEventListener('touchstart', function() {
-      this.style.transform = 'scale(1.07)';
-      this.style.boxShadow = '0 8px 32px 0 rgba(15,110,86,0.18), 0 0 0 4px #0f6e5633';
-    });
-    box.addEventListener('touchend', function() {
-      setTimeout(() => {
-        this.style.transform = '';
-        this.style.boxShadow = '0 2px 12px rgba(15,110,86,0.08)';
-      }, 300);
-    });
-  });
+    };
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
+    document.querySelectorAll('.hero-box').forEach(box => {
+      box.addEventListener('mouseenter', applyHover);
+      box.addEventListener('mouseleave', removeHover);
+      box.addEventListener('touchstart', applyHover);
+      box.addEventListener('touchend', function() {
+        setTimeout(removeHover.bind(this), 300);
+      });
     });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.fade-section').forEach(s => observer.observe(s));
 
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.6);
-  });
-</script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-section').forEach(s => observer.observe(s));
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.1);
+    });
+  </script>
 </body>
 </html>
