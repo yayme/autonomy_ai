@@ -11,56 +11,20 @@
 <body>
   <!-- Navbar (minimal) -->
   <nav class="navbar" id="navbar">
-    <div class="navbar-logo">APAI</div>
-    <button class="navbar-toggle" id="navbar-toggle" aria-label="Toggle navigation">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
-    <div class="navbar-links" id="navbar-links">
-      <a href="#problem">Problem</a>
-      <a href="#framework">Framework</a>
-      <a href="#about">Team</a>
-      <a href="#about">Collaborate</a>
-    </div>
-  </nav>
-  <script>
-    // Navbar scroll effect
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.6);
-    });
-    // Hamburger menu for mobile
-    const navbarToggle = document.getElementById('navbar-toggle');
-    const navbarLinks = document.getElementById('navbar-links');
-    navbarToggle.addEventListener('click', function() {
-      navbarLinks.classList.toggle('open');
-      navbarToggle.classList.toggle('open');
-    });
-    // Close menu on link click (mobile)
-    document.querySelectorAll('.navbar-links a').forEach(link => {
-      link.addEventListener('click', function(e) {
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
-        if (window.innerWidth <= 900) {
-          navbarLinks.classList.remove('open');
-          navbarToggle.classList.remove('open');
-        }
-      });
-    });
-    // Fade-in sections
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.fade-section').forEach(s => observer.observe(s));
-  </script>
-        </div>
+    <nav class="navbar" id="navbar">
+      <div class="navbar-logo">APAI</div>
+      <button class="navbar-toggle" id="navbar-toggle" aria-label="Toggle navigation">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <div class="navbar-links" id="navbar-links">
+        <a href="#problem">Problem</a>
+        <a href="#framework">Framework</a>
+        <a href="#about">Team</a>
+        <a href="#about">Collaborate</a>
       </div>
+    </nav>
     </div>
   </section>
 
@@ -189,55 +153,73 @@
     </div>
   </section>
 
-<footer id="contact" style="background:#1a1a2e;padding:48px 0;border-top:3px solid #0f6e56;">
-<footer class="footer">
-  <div>
-    <div style="font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:6px;">Autonomy Preserving AI</div>
-    <div style="font-size:0.85rem;color:#9ca3af;">&copy; Adnan Sadik, 2026</div>
-  </div>
-</footer>
+  <footer class="footer">
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:6px;">Autonomy Preserving AI</div>
+      <div style="font-size:0.85rem;color:#9ca3af;">&copy; Adnan Sadik, 2026</div>
+    </div>
+    <div>
+      <a href="mailto:adnansadik235@kaist.ac.kr">Contact</a>
+    </div>
+  </footer>
 
-<script>
-  function showEmail() {
-    const reveal = document.getElementById('email-reveal');
-    const btn = document.getElementById('email-btn');
-    reveal.style.display = reveal.style.display === 'none' ? 'block' : 'none';
-    btn.textContent = reveal.style.display === 'block' ? 'Hide' : 'Contact';
-  }
-
-  document.querySelectorAll('.navbar-links a').forEach(link => {
-    link.addEventListener('click', function(e) {
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth' });
-      }
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.6);
     });
-  });
-
-  // Hero box hover effect
-  document.querySelectorAll('.hero-box').forEach(box => {
-    box.addEventListener('mouseenter', function() {
-      this.style.transform = 'scale(1.07)';
-      this.style.boxShadow = '0 8px 32px 0 rgba(15,110,86,0.18), 0 0 0 4px #0f6e5633';
+    // Hamburger menu for mobile
+    const navbarToggle = document.getElementById('navbar-toggle');
+    const navbarLinks = document.getElementById('navbar-links');
+    navbarToggle.addEventListener('click', function() {
+      navbarLinks.classList.toggle('open');
+      navbarToggle.classList.toggle('open');
     });
-    box.addEventListener('mouseleave', function() {
-      this.style.transform = '';
-      this.style.boxShadow = '0 2px 12px rgba(15,110,86,0.08)';
+    // Close menu on link click (mobile)
+    document.querySelectorAll('.navbar-links a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+        if (window.innerWidth <= 900) {
+          navbarLinks.classList.remove('open');
+          navbarToggle.classList.remove('open');
+        }
+      });
     });
-    // Touch devices: tap to animate
-    box.addEventListener('touchstart', function() {
-      this.style.transform = 'scale(1.07)';
-      this.style.boxShadow = '0 8px 32px 0 rgba(15,110,86,0.18), 0 0 0 4px #0f6e5633';
-    });
-    box.addEventListener('touchend', function() {
-      setTimeout(() => {
+    // Fade-in sections
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-section').forEach(s => observer.observe(s));
+    // Hero box hover effect
+    document.querySelectorAll('.hero-box').forEach(box => {
+      box.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.07)';
+        this.style.boxShadow = '0 8px 32px 0 rgba(15,110,86,0.18), 0 0 0 4px #0f6e5633';
+      });
+      box.addEventListener('mouseleave', function() {
         this.style.transform = '';
         this.style.boxShadow = '0 2px 12px rgba(15,110,86,0.08)';
-      }, 300);
+      });
+      // Touch devices: tap to animate
+      box.addEventListener('touchstart', function() {
+        this.style.transform = 'scale(1.07)';
+        this.style.boxShadow = '0 8px 32px 0 rgba(15,110,86,0.18), 0 0 0 4px #0f6e5633';
+      });
+      box.addEventListener('touchend', function() {
+        setTimeout(() => {
+          this.style.transform = '';
+          this.style.boxShadow = '0 2px 12px rgba(15,110,86,0.08)';
+        }, 300);
+      });
     });
-  });
-
+  </script>
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('visible');
