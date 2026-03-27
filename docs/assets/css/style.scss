@@ -1,3 +1,194 @@
+/* Desktop/Mobile UI split */
+.desktop-only { display: block; }
+.mobile-only { display: none !important; }
+
+@media (max-width: 800px) {
+  .desktop-only { display: none !important; }
+  .mobile-only { display: block !important; }
+}
+
+/* Mobile Navbar */
+.mobile-navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 56px;
+  background: var(--charcoal);
+  color: var(--white);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 12px rgba(26,26,46,0.08);
+}
+.mobile-navbar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  padding: 0 16px;
+}
+.mobile-navbar-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--teal);
+}
+.mobile-navbar-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+}
+.mobile-navbar-toggle .bar {
+  width: 24px;
+  height: 3px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.mobile-navbar-toggle.open .bar:nth-child(1) {
+  transform: rotate(45deg) translateY(7px);
+}
+.mobile-navbar-toggle.open .bar:nth-child(2) {
+  opacity: 0;
+}
+.mobile-navbar-toggle.open .bar:nth-child(3) {
+  transform: rotate(-45deg) translateY(-7px);
+}
+.mobile-navbar-links {
+  display: none;
+  flex-direction: column;
+  background: var(--charcoal);
+  width: 100%;
+  padding: 0 0 12px 0;
+}
+.mobile-navbar-links.open {
+  display: flex;
+}
+.mobile-navbar-links a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 12px 16px;
+  border-bottom: 1px solid #222;
+  transition: background 0.2s;
+}
+.mobile-navbar-links a:last-child {
+  border-bottom: none;
+}
+.mobile-navbar-links a:hover {
+  background: var(--teal);
+  color: var(--white);
+}
+
+/* Mobile Main Content */
+.mobile-main {
+  margin-top: 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 0 8px;
+}
+.mobile-hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 8px;
+  text-align: center;
+}
+.mobile-hero-desc {
+  font-size: 1rem;
+  color: var(--charcoal);
+  text-align: center;
+  margin-bottom: 12px;
+}
+.mobile-signup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.mobile-signup input[type="email"] {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  width: 90vw;
+  max-width: 320px;
+}
+.mobile-signup input[type="submit"] {
+  padding: 10px 24px;
+  font-size: 1rem;
+  background: var(--teal);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.mobile-signup-caption {
+  font-size: 0.95rem;
+  color: #666;
+  text-align: center;
+}
+.mobile-problem, .mobile-framework, .mobile-about {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 18px 12px;
+  margin-bottom: 8px;
+}
+.mobile-problem h3, .mobile-framework h3, .mobile-about h3 {
+  font-size: 1.1rem;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+.mobile-problem ul, .mobile-framework ul {
+  padding-left: 18px;
+  margin: 0 0 8px 0;
+}
+.mobile-problem li, .mobile-framework li {
+  font-size: 0.98rem;
+  margin-bottom: 6px;
+}
+.mobile-about p {
+  font-size: 0.98rem;
+  margin-bottom: 10px;
+}
+.mobile-contact-btn {
+  display: inline-block;
+  background: var(--teal);
+  color: var(--white);
+  padding: 8px 18px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.mobile-contact-btn:hover {
+  background: #0c5a47;
+}
+.footer.mobile-only {
+  background: var(--charcoal);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 8px;
+  font-size: 1rem;
+  border-top: 2px solid var(--teal);
+  gap: 4px;
+}
+.footer.mobile-only a {
+  color: var(--white);
+  text-decoration: underline;
+  font-weight: 600;
+}
 /* APAI Landing Page Styles */
 :root {
   --charcoal: #1a1a2e;
