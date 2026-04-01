@@ -53,21 +53,36 @@
     <div class="container" style="max-width:520px;margin:0 auto;text-align:center;">
       <div class="section-label" style="color:#0f6e56;font-size:0.85rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;">Early Access</div>
       <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:#1a1a2e;margin-bottom:18px;">Sign up to be notified when APAI launches</h3>
-      <form
-        action="https://buttondown.com/api/emails/embed-subscribe/sadik"
-        method="post"
-        class="embeddable-buttondown-form"
-        style="display:flex;flex-direction:column;gap:12px;justify-content:center;align-items:center;margin-bottom:12px;max-width:400px;margin-left:auto;margin-right:auto;"
-      >
-        <label for="bd-email" style="font-size:1.1rem;color:#1a1a2e;font-weight:500;">Enter your email</label>
-        <input type="email" name="email" id="bd-email" style="padding:12px 16px;font-size:1.1rem;border-radius:6px;border:1.5px solid #0f6e56;outline:none;width:100%;box-sizing:border-box;" />
-        <input type="submit" value="Subscribe" style="padding:12px 28px;font-size:1.1rem;background:#0f6e56;color:#fff;border:none;border-radius:6px;cursor:pointer;transition:background 0.2s;" />
-        <p style="font-size:0.85rem;color:#666;margin-top:8px;">
-          <a href="https://buttondown.com/refer/sadik" target="_blank" style="color:#0f6e56;text-decoration:none;">
-            Powered by Buttondown.
-          </a>
-        </p>
+      <form onsubmit="event.preventDefault();alert('Thank you! You will be notified.');" style="display:flex;gap:12px;justify-content:center;align-items:center;margin-bottom:12px;">
+        <input id="signup-email" type="email" placeholder="Enter your email" required style="padding:12px 16px;font-size:1.1rem;border-radius:6px;border:1.5px solid #0f6e56;outline:none;flex:1;" />
+        <button type="submit" class="btn btn-primary" style="padding:12px 28px;font-size:1.1rem;">Get Early Access</button>
       </form>
+      <div id="signup-feedback" style="color:#0f6e56;font-weight:600;margin-top:8px;"></div>
+      <script>
+        document.querySelector('form').addEventListener('submit', async function(e) {
+          e.preventDefault();
+          const email = document.getElementById('signup-email').value;
+          const feedback = document.getElementById('signup-feedback');
+          feedback.textContent = '';
+          try {
+            const res = await fetch('/signup', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email })
+            });
+            const data = await res.json();
+            if (data.success) {
+              feedback.textContent = 'Thank you! You will be notified.';
+              document.getElementById('signup-email').value = '';
+            } else {
+              feedback.textContent = data.message || 'Signup failed.';
+            }
+          } catch (err) {
+            feedback.textContent = 'Error submitting email.';
+          }
+        });
+      </script>
+      <div style="color:#0f6e56;font-weight:600;">Be the first to try APAI when it launches.</div>
     </div>
   </section>
 
