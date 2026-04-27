@@ -1,0 +1,234 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 260" width="820">
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif; }
+
+      /* ── Skill-graph nodes: independent glow cycle ── */
+      .nd { fill: #0a1628; stroke: #1c3050; stroke-width: 1.2; }
+      .nd0  { animation: ng 4.0s ease-in-out infinite; }
+      .nd1  { animation: ng 3.5s ease-in-out infinite; animation-delay:-.7s; }
+      .nd2  { animation: ng 4.5s ease-in-out infinite; animation-delay:-1.3s; }
+      .nd3  { animation: ng 3.8s ease-in-out infinite; animation-delay:-2.1s; }
+      .nd4  { animation: ng 4.2s ease-in-out infinite; animation-delay:-.4s; }
+      .nd5  { animation: ng 3.6s ease-in-out infinite; animation-delay:-1.8s; }
+      .nd6  { animation: ng 4.8s ease-in-out infinite; animation-delay:-.9s; }
+      .nd7  { animation: ng 3.4s ease-in-out infinite; animation-delay:-2.5s; }
+      .nd8  { animation: ng 4.1s ease-in-out infinite; animation-delay:-1.1s; }
+      .nd9  { animation: ng 3.7s ease-in-out infinite; animation-delay:-.3s; }
+      .nd10 { animation: ng 4.3s ease-in-out infinite; animation-delay:-1.6s; }
+      .nd11 { animation: ng 3.9s ease-in-out infinite; animation-delay:-2.8s; }
+      .nd12 { animation: ng 4.6s ease-in-out infinite; animation-delay:-.6s; }
+      .nd13 { animation: ng 3.3s ease-in-out infinite; animation-delay:-1.9s; }
+      .nd14 { animation: ng 4.4s ease-in-out infinite; animation-delay:-1.2s; }
+      @keyframes ng {
+        0%,100% { fill: #0a1628; stroke: #1c3050; }
+        50%     { fill: #0d2d6a; stroke: #58a6ff; }
+      }
+
+      /* ── Cognitive state: accent dots pulse ── */
+      .csp { animation: cspa 4s ease-in-out infinite; }
+      .csp1 { animation-delay: 0s; }
+      .csp2 { animation-delay: -.8s; }
+      .csp3 { animation-delay: -1.6s; }
+      .csp4 { animation-delay: -2.4s; }
+      .csp5 { animation-delay: -3.2s; }
+      @keyframes cspa { 0%,100%{ opacity:.2; } 50%{ opacity:1; } }
+
+      /* ── Interaction Signals: waveform bars ── */
+      .wb { fill: #58a6ff; }
+      .wb1 { animation: wba 1.4s ease-in-out infinite; }
+      .wb2 { animation: wba 1.4s ease-in-out infinite; animation-delay:-.2s; }
+      .wb3 { animation: wba 1.4s ease-in-out infinite; animation-delay:-.4s; }
+      .wb4 { animation: wba 1.4s ease-in-out infinite; animation-delay:-.6s; }
+      .wb5 { animation: wba 1.4s ease-in-out infinite; animation-delay:-.8s; }
+      .wb6 { animation: wba 1.4s ease-in-out infinite; animation-delay:-1.0s; }
+      .wb7 { animation: wba 1.4s ease-in-out infinite; animation-delay:-1.2s; }
+      @keyframes wba { 0%,100%{ opacity:.2; } 50%{ opacity:.85; } }
+
+      /* ── Overseer radar ── */
+      .oc { fill: #071a07; stroke: #238636; stroke-width: 1.5;
+            animation: ocp 3s ease-in-out infinite; }
+      @keyframes ocp { 0%,100%{ stroke:#238636; } 50%{ stroke:#3fb950; } }
+      .pr { fill: none; stroke: #3fb950; stroke-width: 1; opacity: 0; }
+      .pr1 { animation: pring 3s ease-out infinite; }
+      .pr2 { animation: pring 3s ease-out infinite; animation-delay: -1s; }
+      .pr3 { animation: pring 3s ease-out infinite; animation-delay: -2s; }
+      @keyframes pring { 0%{ r:14; opacity:.6; } 100%{ r:42; opacity:0; } }
+      .sa { animation: sarot 5s linear infinite; transform-origin: 0 0; }
+      @keyframes sarot { to { transform: rotate(360deg); } }
+
+      /* ── Response panel: cycling color bars ── */
+      .pba { animation: pbca 9s ease-in-out infinite; }
+      .pbb { animation: pbca 9s ease-in-out infinite; animation-delay:-3s; }
+      .pbc { animation: pbca 9s ease-in-out infinite; animation-delay:-6s; }
+      @keyframes pbca { 0%,20%{ opacity:.85; } 30%,70%{ opacity:.05; } 80%,100%{ opacity:.85; } }
+
+      /* ── Animated dashed flows ── */
+      .flow { stroke-dasharray: 4 3; fill: none;
+              animation: flowmo .8s linear infinite; }
+      @keyframes flowmo { from{ stroke-dashoffset:7; } to{ stroke-dashoffset:0; } }
+    </style>
+
+    <marker id="arw" viewBox="0 0 8 8" refX="6" refY="4"
+            markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M1 2L6 4L1 6" fill="none" stroke="#30363d"
+            stroke-width="1.4" stroke-linecap="round"/>
+    </marker>
+    <marker id="arwb" viewBox="0 0 8 8" refX="6" refY="4"
+            markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M1 2L6 4L1 6" fill="none" stroke="#58a6ff"
+            stroke-width="1.4" stroke-linecap="round"/>
+    </marker>
+    <marker id="arwg" viewBox="0 0 8 8" refX="6" refY="4"
+            markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M1 2L6 4L1 6" fill="none" stroke="#3fb950"
+            stroke-width="1.4" stroke-linecap="round"/>
+    </marker>
+  </defs>
+
+  <!-- ── Background ── -->
+  <rect width="820" height="260" rx="12" fill="#0d1117"/>
+  <rect x=".5" y=".5" width="819" height="259" rx="11.5"
+        fill="none" stroke="#21262d" stroke-width="1"/>
+
+  <!-- Vertical divider -->
+  <line x1="298" y1="14" x2="298" y2="246" stroke="#21262d" stroke-width="1"/>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- LEFT — SKILL GRAPH                          -->
+  <!-- ═══════════════════════════════════════════ -->
+
+  <text x="150" y="12" text-anchor="middle" font-size="7" letter-spacing="2"
+        font-weight="600" fill="#484f58" font-family="monospace">SKILL GRAPH</text>
+
+  <!-- Edges layer 0 → 1 -->
+  <line x1="92"  y1="27" x2="40"  y2="63" stroke="#21262d" stroke-width=".9"/>
+  <line x1="92"  y1="27" x2="118" y2="63" stroke="#21262d" stroke-width=".9"/>
+  <line x1="192" y1="27" x2="166" y2="63" stroke="#21262d" stroke-width=".9"/>
+  <line x1="192" y1="27" x2="244" y2="63" stroke="#21262d" stroke-width=".9"/>
+  <!-- Edges layer 1 → 2 -->
+  <line x1="40"  y1="70" x2="62"  y2="110" stroke="#21262d" stroke-width=".9"/>
+  <line x1="118" y1="70" x2="62"  y2="110" stroke="#21262d" stroke-width=".9"/>
+  <line x1="118" y1="70" x2="136" y2="110" stroke="#21262d" stroke-width=".9"/>
+  <line x1="166" y1="70" x2="136" y2="110" stroke="#21262d" stroke-width=".9"/>
+  <line x1="166" y1="70" x2="200" y2="110" stroke="#21262d" stroke-width=".9"/>
+  <line x1="244" y1="70" x2="200" y2="110" stroke="#21262d" stroke-width=".9"/>
+  <line x1="244" y1="70" x2="255" y2="110" stroke="#21262d" stroke-width=".9"/>
+  <!-- Edges layer 2 → 3 -->
+  <line x1="62"  y1="117" x2="80"  y2="155" stroke="#21262d" stroke-width=".9"/>
+  <line x1="136" y1="117" x2="80"  y2="155" stroke="#21262d" stroke-width=".9"/>
+  <line x1="136" y1="117" x2="162" y2="155" stroke="#21262d" stroke-width=".9"/>
+  <line x1="200" y1="117" x2="162" y2="155" stroke="#21262d" stroke-width=".9"/>
+  <line x1="200" y1="117" x2="228" y2="155" stroke="#21262d" stroke-width=".9"/>
+  <line x1="255" y1="117" x2="228" y2="155" stroke="#21262d" stroke-width=".9"/>
+  <!-- Edges layer 3 → 4 -->
+  <line x1="80"  y1="162" x2="122" y2="196" stroke="#21262d" stroke-width=".9"/>
+  <line x1="162" y1="162" x2="122" y2="196" stroke="#21262d" stroke-width=".9"/>
+  <line x1="162" y1="162" x2="196" y2="196" stroke="#21262d" stroke-width=".9"/>
+  <line x1="228" y1="162" x2="196" y2="196" stroke="#21262d" stroke-width=".9"/>
+
+  <!-- Nodes layer 0 -->
+  <circle class="nd nd0" cx="92"  cy="25"  r="7"/>
+  <circle class="nd nd1" cx="192" cy="25"  r="7"/>
+  <!-- Nodes layer 1 -->
+  <circle class="nd nd2" cx="40"  cy="67"  r="7"/>
+  <circle class="nd nd3" cx="118" cy="67"  r="7"/>
+  <circle class="nd nd4" cx="166" cy="67"  r="7"/>
+  <circle class="nd nd5" cx="244" cy="67"  r="7"/>
+  <!-- Nodes layer 2 -->
+  <circle class="nd nd6" cx="62"  cy="114" r="7"/>
+  <circle class="nd nd7" cx="136" cy="114" r="7"/>
+  <circle class="nd nd8" cx="200" cy="114" r="7"/>
+  <circle class="nd nd9" cx="255" cy="114" r="7"/>
+  <!-- Nodes layer 3 -->
+  <circle class="nd nd10" cx="80"  cy="158" r="7"/>
+  <circle class="nd nd11" cx="162" cy="158" r="7"/>
+  <circle class="nd nd12" cx="228" cy="158" r="7"/>
+  <!-- Nodes layer 4 -->
+  <circle class="nd nd13" cx="122" cy="196" r="7"/>
+  <circle class="nd nd14" cx="196" cy="196" r="7"/>
+
+  <!-- ─────────────────────────────────────────── -->
+  <!-- LEFT BOTTOM — COGNITIVE STATE BLOCK         -->
+  <!-- ─────────────────────────────────────────── -->
+
+  <rect x="11" y="210" width="276" height="38" rx="7"
+        fill="#0d1f3c" stroke="#1f3d6e" stroke-width="1"/>
+
+  <!-- Pulsing accent dots -->
+  <circle class="csp csp1" cx="30"  cy="229" r="3" fill="#58a6ff"/>
+  <circle class="csp csp2" cx="44"  cy="229" r="3" fill="#58a6ff"/>
+  <circle class="csp csp3" cx="58"  cy="229" r="3" fill="#58a6ff"/>
+  <circle class="csp csp4" cx="72"  cy="229" r="3" fill="#58a6ff"/>
+  <circle class="csp csp5" cx="86"  cy="229" r="3" fill="#58a6ff"/>
+
+  <text x="194" y="224" text-anchor="middle" font-size="8.5" font-weight="600"
+        fill="#79c0ff">Persistent Cognitive State</text>
+  <text x="194" y="239" text-anchor="middle" font-size="7" fill="#8b949e"
+        letter-spacing=".3">continuous approximation of human knowledge</text>
+
+  <!-- ─────────────────────────────────────────── -->
+  <!-- CROSS ARROW: Cognitive State → Overseer     -->
+  <!-- ─────────────────────────────────────────── -->
+  <path d="M 287 229 C 330 229 360 152 524 152"
+        class="flow" stroke="#58a6ff" stroke-width="1.1" marker-end="url(#arwb)"/>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- RIGHT — PIPELINE                            -->
+  <!-- ═══════════════════════════════════════════ -->
+
+  <!-- ── 1. Interaction Signals ── -->
+  <rect x="376" y="14" width="370" height="52" rx="8"
+        fill="#161b22" stroke="#30363d" stroke-width="1"/>
+
+  <!-- Abstract waveform bars -->
+  <rect class="wb wb1" x="394" y="22" width="5" height="18" rx="2"/>
+  <rect class="wb wb2" x="403" y="28" width="5" height="12" rx="2"/>
+  <rect class="wb wb3" x="412" y="19" width="5" height="22" rx="2"/>
+  <rect class="wb wb4" x="421" y="25" width="5" height="14" rx="2"/>
+  <rect class="wb wb5" x="430" y="21" width="5" height="20" rx="2"/>
+  <rect class="wb wb6" x="439" y="27" width="5" height="10" rx="2"/>
+  <rect class="wb wb7" x="448" y="23" width="5" height="16" rx="2"/>
+
+  <text x="610" y="35" text-anchor="middle" font-size="11" font-weight="600"
+        fill="#e6edf3">Interaction Signals</text>
+  <text x="610" y="54" text-anchor="middle" font-size="7.5" fill="#8b949e"
+        letter-spacing=".3">behavioral observations from every exchange</text>
+
+  <!-- ── Arrow 1 → Overseer ── -->
+  <line x1="561" y1="66" x2="561" y2="105"
+        class="flow" stroke="#30363d" stroke-width="1.1" marker-end="url(#arw)"/>
+
+  <!-- ── 2. Overseer Agent ── -->
+  <circle class="pr pr1" cx="561" cy="152" r="14"/>
+  <circle class="pr pr2" cx="561" cy="152" r="14"/>
+  <circle class="pr pr3" cx="561" cy="152" r="14"/>
+  <circle class="oc" cx="561" cy="152" r="38"/>
+  <g transform="translate(561,152)">
+    <g class="sa">
+      <line x1="0" y1="0" x2="0" y2="-32"
+            stroke="#3fb950" stroke-width="1" opacity=".5"/>
+      <circle cx="0" cy="-28" r="2.5" fill="#3fb950" opacity=".8"/>
+    </g>
+  </g>
+  <circle cx="561" cy="152" r="4" fill="#3fb950"/>
+  <text x="561" y="200" text-anchor="middle" font-size="10"
+        font-weight="600" fill="#e6edf3">Overseer Agent</text>
+
+  <!-- ── Arrow Overseer → Response ── -->
+  <line x1="561" y1="208" x2="561" y2="218"
+        class="flow" stroke="#3fb950" stroke-width="1.1" marker-end="url(#arwg)"/>
+
+  <!-- ── 3. Modulated AI Response ── -->
+  <rect x="376" y="218" width="370" height="30" rx="8"
+        fill="#071a07" stroke="#238636" stroke-width="1"/>
+
+  <!-- Cycling colour strip -->
+  <rect class="pba" x="390" y="225" width="340" height="8" rx="3" fill="#238636"/>
+  <rect class="pbb" x="390" y="225" width="340" height="8" rx="3" fill="#da3633"/>
+  <rect class="pbc" x="390" y="225" width="340" height="8" rx="3" fill="#b08800"/>
+
+  <text x="561" y="243" text-anchor="middle" font-size="9.5" font-weight="600"
+        fill="#3fb950">Modulated AI Response</text>
+
+</svg>

@@ -3,6 +3,10 @@
 A proof of concept implementation of a middleware framework that monitors user cognitive engagement across skill domains and dynamically modulates AI assistance to prevent skill atrophy. The project has two scripts: a discrete-time EKF simulation and a continuous-time ODE simulation with live Gemini 2.5 Flash integration. The future work involves utilizing multi agent framework, skill directed graph and trained human capability agent to prevent skill decay while maintaining Ai utilization for productivity. Check out the landing page at:
  [website](https://adnansadik.dev/apai)
 
+<p align="center">
+  <img src="banner.svg" alt="APAI feedback loop animation" width="820"/>
+</p>
+
 ---
 
 ## Scripts
