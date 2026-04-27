@@ -131,7 +131,7 @@ Computed via `scipy.integrate.cumulative_trapezoid`.
 
 ## LLM Modulation via Gemini 2.5 Flash
 
-`main.py` queries `gemini-2.5-flash` with three system prompts corresponding to discretized assistance deterrent levels:
+`main.py` queries `gemini-2.5-flash` with three system prompts corresponding to discretized assistance deterrent levels (This is only for simulation. Future work includes, continuous modulation of the LLM response):
 
 | Level | u | Behavior |
 |---|---|---|
