@@ -1,244 +1,235 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 200" width="820">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 265" width="820">
   <defs>
     <style>
       text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif; }
 
-      /* ── DAG node color cycle: blue(healthy) → red(atrophy) → amber(recover) ── */
-      .n1,.n2,.n3,.n4,.n5,.n6 { stroke-width: 1.2; fill: #0d2d6a; stroke: #58a6ff; }
-
-      .n1 { animation: nc 10s ease-in-out infinite; }
-      .n2 { animation: nc 10s ease-in-out infinite; animation-delay: -1s; }
-      .n3 { animation: nc 10s ease-in-out infinite; animation-delay: -1.5s; }
-      .n4 { animation: nc 10s ease-in-out infinite; animation-delay: -2s; }
-      .n5 { animation: nc 10s ease-in-out infinite; animation-delay: -2.4s; }
-      .n6 { animation: nc 10s ease-in-out infinite; animation-delay: -2.8s; }
-
-      @keyframes nc {
-        0%,14%   { fill: #0d2d6a; stroke: #58a6ff; }
-        30%,44%  { fill: #6e1116; stroke: #f85149; }
-        60%,74%  { fill: #3d2900; stroke: #d29922; }
-        88%,100% { fill: #0d2d6a; stroke: #58a6ff; }
+      /* ── Node glow: each node breathes independently ── */
+      .nd { fill: #0a1628; stroke: #1c3050; stroke-width: 1.2; }
+      .nd0  { animation: ng 4.0s ease-in-out infinite; }
+      .nd1  { animation: ng 3.5s ease-in-out infinite; animation-delay: -0.7s; }
+      .nd2  { animation: ng 4.5s ease-in-out infinite; animation-delay: -1.3s; }
+      .nd3  { animation: ng 3.8s ease-in-out infinite; animation-delay: -2.1s; }
+      .nd4  { animation: ng 4.2s ease-in-out infinite; animation-delay: -0.4s; }
+      .nd5  { animation: ng 3.6s ease-in-out infinite; animation-delay: -1.8s; }
+      .nd6  { animation: ng 4.8s ease-in-out infinite; animation-delay: -0.9s; }
+      .nd7  { animation: ng 3.4s ease-in-out infinite; animation-delay: -2.5s; }
+      .nd8  { animation: ng 4.1s ease-in-out infinite; animation-delay: -1.1s; }
+      .nd9  { animation: ng 3.7s ease-in-out infinite; animation-delay: -0.3s; }
+      .nd10 { animation: ng 4.3s ease-in-out infinite; animation-delay: -1.6s; }
+      .nd11 { animation: ng 3.9s ease-in-out infinite; animation-delay: -2.8s; }
+      .nd12 { animation: ng 4.6s ease-in-out infinite; animation-delay: -0.6s; }
+      .nd13 { animation: ng 3.3s ease-in-out infinite; animation-delay: -1.9s; }
+      .nd14 { animation: ng 4.4s ease-in-out infinite; animation-delay: -1.2s; }
+      @keyframes ng {
+        0%,100% { fill: #0a1628; stroke: #1c3050; }
+        50%     { fill: #0d2d6a; stroke: #58a6ff; }
       }
 
-      /* ── Overseer core pulse ── */
-      .oc {
-        fill: #071a07; stroke-width: 1.5; stroke: #238636;
-        animation: oca 3s ease-in-out infinite;
-      }
-      @keyframes oca {
-        0%,100% { stroke: #238636; }
-        50%     { stroke: #3fb950; filter: drop-shadow(0 0 10px #3fb95055); }
-      }
+      /* ── State-block accent pulse ── */
+      .sbp { animation: sbpa 4s ease-in-out infinite; }
+      .sbp:nth-child(2) { animation-delay: -0.8s; }
+      .sbp:nth-child(3) { animation-delay: -1.6s; }
+      .sbp:nth-child(4) { animation-delay: -2.4s; }
+      .sbp:nth-child(5) { animation-delay: -3.2s; }
+      @keyframes sbpa { 0%,100%{ opacity:.25; } 50%{ opacity:.9; } }
 
-      /* ── Overseer pulse rings ── */
-      .pr1,.pr2,.pr3 {
-        fill: none; stroke: #3fb950; stroke-width: 1.5; opacity: 0;
-        animation: pr 3s ease-out infinite;
-      }
-      .pr2 { animation-delay: -1s; }
-      .pr3 { animation-delay: -2s; }
-      @keyframes pr {
-        0%   { r: 20; opacity: 0.7; }
-        100% { r: 56; opacity: 0; }
-      }
-
-      /* ── Scan arm rotation ── */
-      .sa { transform-origin: 0 0; animation: sarot 5s linear infinite; }
+      /* ── Overseer radar ── */
+      .oc { fill: #071a07; stroke: #238636; stroke-width: 1.5;
+            animation: ocp 3s ease-in-out infinite; }
+      @keyframes ocp { 0%,100%{ stroke:#238636; } 50%{ stroke:#3fb950; } }
+      .pr { fill: none; stroke: #3fb950; stroke-width: 1; opacity: 0; }
+      .pr1 { animation: pring 3s ease-out infinite; }
+      .pr2 { animation: pring 3s ease-out infinite; animation-delay: -1s; }
+      .pr3 { animation: pring 3s ease-out infinite; animation-delay: -2s; }
+      @keyframes pring { 0%{ r:14; opacity:.6; } 100%{ r:38; opacity:0; } }
+      .sa { animation: sarot 5s linear infinite; transform-origin: 0 0; }
       @keyframes sarot { to { transform: rotate(360deg); } }
 
-      /* ── Signal flow arrows ── */
-      .sf-b {
-        stroke: #1f6feb; stroke-width: 1.2; stroke-dasharray: 4 3; fill: none;
-        animation: sf .9s linear infinite;
+      /* ── Prompt bars cycling ── */
+      .pba { animation: pbca 9s ease-in-out infinite; }
+      .pbb { animation: pbca 9s ease-in-out infinite; animation-delay: -3s; }
+      .pbc { animation: pbca 9s ease-in-out infinite; animation-delay: -6s; }
+      @keyframes pbca {
+        0%,20%   { opacity: .85; }
+        30%,70%  { opacity: .08; }
+        80%,100% { opacity: .85; }
       }
-      .sf-g {
-        stroke: #2ea043; stroke-width: 1.2; stroke-dasharray: 4 3; fill: none;
-        animation: sf .9s linear infinite;
-      }
-      @keyframes sf { from { stroke-dashoffset: 7; } to { stroke-dashoffset: 0; } }
 
-      /* ── Prompt panel: three states swap in/out in sync with node cycle ── */
-      .pv-a { animation: pva 10s ease-in-out infinite; }
-      @keyframes pva {
-        0%,22%   { opacity: 1; }
-        30%,72%  { opacity: 0; }
-        80%,100% { opacity: 1; }
-      }
-      .pv-d { animation: pvd 10s ease-in-out infinite; opacity: 0; }
-      @keyframes pvd {
-        0%,28%  { opacity: 0; }
-        35%,47% { opacity: 1; }
-        55%,100%{ opacity: 0; }
-      }
-      .pv-p { animation: pvp 10s ease-in-out infinite; opacity: 0; }
-      @keyframes pvp {
-        0%,60%  { opacity: 0; }
-        67%,76% { opacity: 1; }
-        84%,100%{ opacity: 0; }
-      }
+      /* ── Flow arrows ── */
+      .flow { stroke-dasharray: 4 3; fill: none;
+              animation: flowmo .8s linear infinite; }
+      @keyframes flowmo { from{ stroke-dashoffset: 7; } to{ stroke-dashoffset: 0; } }
     </style>
 
-    <!-- Arrow markers -->
-    <marker id="ea" viewBox="0 0 8 8" refX="7" refY="4"
+    <marker id="arw" viewBox="0 0 8 8" refX="6" refY="4"
             markerWidth="5" markerHeight="5" orient="auto">
-      <path d="M1 1.5L7 4L1 6.5" fill="none" stroke="#30363d"
-            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M1 2L6 4L1 6" fill="none" stroke="#30363d"
+            stroke-width="1.4" stroke-linecap="round"/>
     </marker>
-    <marker id="ab" viewBox="0 0 8 8" refX="7" refY="4"
+    <marker id="arwb" viewBox="0 0 8 8" refX="6" refY="4"
             markerWidth="5" markerHeight="5" orient="auto">
-      <path d="M1 1.5L7 4L1 6.5" fill="none" stroke="#1f6feb"
-            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </marker>
-    <marker id="ag" viewBox="0 0 8 8" refX="7" refY="4"
-            markerWidth="5" markerHeight="5" orient="auto">
-      <path d="M1 1.5L7 4L1 6.5" fill="none" stroke="#2ea043"
-            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M1 2L6 4L1 6" fill="none" stroke="#58a6ff"
+            stroke-width="1.4" stroke-linecap="round"/>
     </marker>
   </defs>
 
   <!-- ── Background ── -->
-  <rect width="820" height="200" rx="12" fill="#0d1117"/>
-  <rect x=".5" y=".5" width="819" height="199" rx="11.5"
-        fill="none" stroke="#30363d" stroke-width="1"/>
+  <rect width="820" height="265" rx="12" fill="#0d1117"/>
+  <rect x=".5" y=".5" width="819" height="264" rx="11.5"
+        fill="none" stroke="#21262d" stroke-width="1"/>
 
-  <!-- ── Section dividers ── -->
-  <line x1="268" y1="18" x2="268" y2="188" stroke="#21262d" stroke-width="1"/>
-  <line x1="556" y1="18" x2="556" y2="188" stroke="#21262d" stroke-width="1"/>
+  <!-- Vertical divider: graph | right panel -->
+  <line x1="295" y1="14" x2="295" y2="251" stroke="#21262d" stroke-width="1"/>
 
-  <!-- ── Section labels ── -->
-  <text x="134" y="13" text-anchor="middle" font-size="8" letter-spacing="1.5"
-        font-weight="600" fill="#484f58" font-family="monospace">PREREQUISITE SKILL GRAPH</text>
-  <text x="412" y="13" text-anchor="middle" font-size="8" letter-spacing="1.5"
-        font-weight="600" fill="#484f58" font-family="monospace">OVERSEER AGENT</text>
-  <text x="688" y="13" text-anchor="middle" font-size="8" letter-spacing="1.5"
-        font-weight="600" fill="#484f58" font-family="monospace">PROMPT MODIFICATION</text>
+  <!-- ══════════════ LEFT — SKILL GRAPH ══════════════ -->
+  <text x="148" y="12" text-anchor="middle" font-size="7" letter-spacing="2"
+        font-weight="600" fill="#484f58" font-family="monospace">SKILL GRAPH</text>
 
-  <!-- ══════════════ SECTION 1: DAG ══════════════ -->
+  <!-- Edges (layer 0 → 1) -->
+  <line x1="95"  y1="30" x2="45"  y2="68" stroke="#21262d" stroke-width=".9"/>
+  <line x1="95"  y1="30" x2="125" y2="68" stroke="#21262d" stroke-width=".9"/>
+  <line x1="195" y1="30" x2="165" y2="68" stroke="#21262d" stroke-width=".9"/>
+  <line x1="195" y1="30" x2="240" y2="68" stroke="#21262d" stroke-width=".9"/>
 
-  <!-- Edges (drawn first, nodes render on top) -->
-  <line x1="134" y1="67" x2="82"  y2="97"  stroke="#21262d" stroke-width="1" fill="none" marker-end="url(#ea)"/>
-  <line x1="134" y1="67" x2="190" y2="97"  stroke="#21262d" stroke-width="1" fill="none" marker-end="url(#ea)"/>
-  <line x1="82"  y1="119" x2="50" y2="150" stroke="#21262d" stroke-width="1" fill="none" marker-end="url(#ea)"/>
-  <line x1="82"  y1="119" x2="134" y2="150" stroke="#21262d" stroke-width="1" fill="none" marker-end="url(#ea)"/>
-  <line x1="190" y1="119" x2="134" y2="150" stroke="#21262d" stroke-width="1" fill="none" marker-end="url(#ea)"/>
-  <line x1="190" y1="119" x2="218" y2="150" stroke="#21262d" stroke-width="1" fill="none" marker-end="url(#ea)"/>
+  <!-- Edges (layer 1 → 2) -->
+  <line x1="45"  y1="75" x2="68"  y2="118" stroke="#21262d" stroke-width=".9"/>
+  <line x1="125" y1="75" x2="68"  y2="118" stroke="#21262d" stroke-width=".9"/>
+  <line x1="125" y1="75" x2="138" y2="118" stroke="#21262d" stroke-width=".9"/>
+  <line x1="165" y1="75" x2="138" y2="118" stroke="#21262d" stroke-width=".9"/>
+  <line x1="165" y1="75" x2="200" y2="118" stroke="#21262d" stroke-width=".9"/>
+  <line x1="240" y1="75" x2="200" y2="118" stroke="#21262d" stroke-width=".9"/>
+  <line x1="240" y1="75" x2="255" y2="118" stroke="#21262d" stroke-width=".9"/>
 
-  <!-- Nodes -->
-  <rect class="n1" x="107" y="45"  width="54" height="22" rx="5"/>
-  <text x="134" y="59"  text-anchor="middle" font-size="8.5" fill="#e6edf3">Arithmetic</text>
+  <!-- Edges (layer 2 → 3) -->
+  <line x1="68"  y1="125" x2="85"  y2="168" stroke="#21262d" stroke-width=".9"/>
+  <line x1="138" y1="125" x2="85"  y2="168" stroke="#21262d" stroke-width=".9"/>
+  <line x1="138" y1="125" x2="168" y2="168" stroke="#21262d" stroke-width=".9"/>
+  <line x1="200" y1="125" x2="168" y2="168" stroke="#21262d" stroke-width=".9"/>
+  <line x1="200" y1="125" x2="225" y2="168" stroke="#21262d" stroke-width=".9"/>
+  <line x1="255" y1="125" x2="225" y2="168" stroke="#21262d" stroke-width=".9"/>
 
-  <rect class="n2" x="47"  y="97"  width="70" height="22" rx="5"/>
-  <text x="82"  y="111" text-anchor="middle" font-size="8.5" fill="#e6edf3">Probability</text>
+  <!-- Edges (layer 3 → 4) -->
+  <line x1="85"  y1="175" x2="128" y2="212" stroke="#21262d" stroke-width=".9"/>
+  <line x1="168" y1="175" x2="128" y2="212" stroke="#21262d" stroke-width=".9"/>
+  <line x1="168" y1="175" x2="198" y2="212" stroke="#21262d" stroke-width=".9"/>
+  <line x1="225" y1="175" x2="198" y2="212" stroke="#21262d" stroke-width=".9"/>
 
-  <rect class="n3" x="155" y="97"  width="70" height="22" rx="5"/>
-  <text x="190" y="111" text-anchor="middle" font-size="8.5" fill="#e6edf3">Lin. Algebra</text>
+  <!-- Nodes layer 0 -->
+  <circle class="nd nd0"  cx="95"  cy="28"  r="7"/>
+  <circle class="nd nd1"  cx="195" cy="28"  r="7"/>
+  <!-- Nodes layer 1 -->
+  <circle class="nd nd2"  cx="45"  cy="71"  r="7"/>
+  <circle class="nd nd3"  cx="125" cy="71"  r="7"/>
+  <circle class="nd nd4"  cx="165" cy="71"  r="7"/>
+  <circle class="nd nd5"  cx="240" cy="71"  r="7"/>
+  <!-- Nodes layer 2 -->
+  <circle class="nd nd6"  cx="68"  cy="121" r="7"/>
+  <circle class="nd nd7"  cx="138" cy="121" r="7"/>
+  <circle class="nd nd8"  cx="200" cy="121" r="7"/>
+  <circle class="nd nd9"  cx="255" cy="121" r="7"/>
+  <!-- Nodes layer 3 -->
+  <circle class="nd nd10" cx="85"  cy="171" r="7"/>
+  <circle class="nd nd11" cx="168" cy="171" r="7"/>
+  <circle class="nd nd12" cx="225" cy="171" r="7"/>
+  <!-- Nodes layer 4 -->
+  <circle class="nd nd13" cx="128" cy="212" r="7"/>
+  <circle class="nd nd14" cx="198" cy="212" r="7"/>
 
-  <rect class="n4" x="20"  y="150" width="60" height="22" rx="5"/>
-  <text x="50"  y="164" text-anchor="middle" font-size="8"   fill="#e6edf3">Markov</text>
+  <!-- ── Arrow: Skill Graph → State Block ── -->
+  <line x1="281" y1="121" x2="302" y2="46"
+        class="flow" stroke="#58a6ff" stroke-width="1.1" marker-end="url(#arwb)"/>
 
-  <rect class="n5" x="107" y="150" width="54" height="22" rx="5"/>
-  <text x="134" y="164" text-anchor="middle" font-size="8"   fill="#e6edf3">Optim.</text>
+  <!-- ══════════════ RIGHT TOP — PERSISTENT STATE BLOCK ══════════════ -->
+  <rect x="308" y="14" width="498" height="60" rx="8"
+        fill="#0d1f3c" stroke="#1f3d6e" stroke-width="1"/>
 
-  <rect class="n6" x="192" y="150" width="60" height="22" rx="5"/>
-  <text x="222" y="164" text-anchor="middle" font-size="8"   fill="#e6edf3">Neural</text>
+  <!-- Pulsing accent dots -->
+  <circle class="sbp" cx="335" cy="44" r="3.5" fill="#58a6ff"/>
+  <circle class="sbp" cx="352" cy="44" r="3.5" fill="#58a6ff"/>
+  <circle class="sbp" cx="369" cy="44" r="3.5" fill="#58a6ff"/>
+  <circle class="sbp" cx="386" cy="44" r="3.5" fill="#58a6ff"/>
+  <circle class="sbp" cx="403" cy="44" r="3.5" fill="#58a6ff"/>
 
-  <text x="134" y="190" text-anchor="middle" font-size="7" fill="#484f58"
-        font-style="italic">capability ĉᵥ · prerequisite cascade</text>
+  <text x="570" y="36" text-anchor="middle" font-size="11.5" font-weight="600"
+        fill="#79c0ff">Persistent Human Cognitive State Tracking</text>
+  <text x="570" y="56" text-anchor="middle" font-size="8" fill="#8b949e"
+        letter-spacing=".5">continuous belief state · engagement · retention · drift</text>
 
-  <!-- ── Signal: DAG → Overseer ── -->
-  <line x1="270" y1="103" x2="374" y2="103" class="sf-b" marker-end="url(#ab)"/>
-  <text x="322" y="96" text-anchor="middle" font-size="7.5" fill="#1f6feb">observations</text>
+  <!-- ── Arrows: State Block → Three modules ── -->
+  <line x1="408" y1="74" x2="408" y2="86"
+        class="flow" stroke="#30363d" stroke-width="1" marker-end="url(#arw)"/>
+  <line x1="557" y1="74" x2="557" y2="86"
+        class="flow" stroke="#30363d" stroke-width="1" marker-end="url(#arw)"/>
+  <line x1="707" y1="74" x2="707" y2="86"
+        class="flow" stroke="#30363d" stroke-width="1" marker-end="url(#arw)"/>
 
-  <!-- ══════════════ SECTION 2: OVERSEER AGENT ══════════════ -->
+  <!-- Module separator lines -->
+  <line x1="473" y1="78" x2="473" y2="240" stroke="#21262d" stroke-width=".5"/>
+  <line x1="640" y1="78" x2="640" y2="240" stroke="#21262d" stroke-width=".5"/>
 
+  <!-- ══════════════ MODULE 1 — OVERSEER AGENT ══════════════ -->
   <!-- Pulse rings -->
-  <circle class="pr1" cx="412" cy="103" r="20"/>
-  <circle class="pr2" cx="412" cy="103" r="20"/>
-  <circle class="pr3" cx="412" cy="103" r="20"/>
-
-  <!-- Core circle -->
-  <circle class="oc" cx="412" cy="103" r="36"/>
-
-  <!-- Scan arm (translated so rotation pivot = circle center) -->
-  <g transform="translate(412,103)">
+  <circle class="pr pr1" cx="408" cy="158" r="14"/>
+  <circle class="pr pr2" cx="408" cy="158" r="14"/>
+  <circle class="pr pr3" cx="408" cy="158" r="14"/>
+  <!-- Core -->
+  <circle class="oc" cx="408" cy="158" r="30"/>
+  <!-- Scan arm -->
+  <g transform="translate(408,158)">
     <g class="sa">
-      <line x1="0" y1="0" x2="0" y2="-33" stroke="#3fb950"
-            stroke-width="1" opacity="0.5"/>
-      <circle cx="0" cy="-30" r="2.5" fill="#3fb950" opacity="0.8"/>
+      <line x1="0" y1="0" x2="0" y2="-26"
+            stroke="#3fb950" stroke-width="1" opacity=".5"/>
+      <circle cx="0" cy="-23" r="2" fill="#3fb950" opacity=".8"/>
     </g>
   </g>
+  <circle cx="408" cy="158" r="3.5" fill="#3fb950"/>
+  <!-- Label -->
+  <text x="408" y="203" text-anchor="middle" font-size="9.5"
+        font-weight="600" fill="#e6edf3">Overseer Agent</text>
+  <text x="408" y="217" text-anchor="middle" font-size="7.5"
+        fill="#8b949e">monitors · tracks · infers</text>
 
-  <!-- Center dot -->
-  <circle cx="412" cy="103" r="4" fill="#3fb950"/>
+  <!-- ══════════════ MODULE 2 — STATE ESTIMATOR ══════════════ -->
+  <!-- Abstract Gaussian / belief curve -->
+  <path d="M 487 175 Q 498 150 510 136 Q 520 126 557 122 Q 594 126 604 136 Q 616 150 627 175"
+        fill="none" stroke="#58a6ff" stroke-width="1.4" opacity=".65"/>
+  <!-- Shaded area under curve -->
+  <path d="M 487 175 Q 498 150 510 136 Q 520 126 557 122 Q 594 126 604 136 Q 616 150 627 175 Z"
+        fill="#58a6ff" fill-opacity=".06"/>
+  <!-- Vertical centre line -->
+  <line x1="557" y1="120" x2="557" y2="175"
+        stroke="#58a6ff" stroke-width=".8" stroke-dasharray="3 2" opacity=".35"/>
+  <!-- Peak dot -->
+  <circle cx="557" cy="122" r="3" fill="#79c0ff" opacity=".9"/>
+  <!-- Label -->
+  <text x="557" y="203" text-anchor="middle" font-size="9.5"
+        font-weight="600" fill="#e6edf3">State Estimator</text>
+  <text x="557" y="217" text-anchor="middle" font-size="7.5"
+        fill="#8b949e">approximates · updates · refines</text>
 
-  <!-- Labels -->
-  <text x="412" y="153" text-anchor="middle" font-size="9"
-        fill="#e6edf3" font-weight="500">Overseer Agent</text>
-  <text x="412" y="165" text-anchor="middle" font-size="7.5" fill="#8b949e">
-    Persistent Cognitive State</text>
-  <text x="412" y="175" text-anchor="middle" font-size="7.5" fill="#8b949e">
-    Approximation Tracking</text>
-  <text x="412" y="188" text-anchor="middle" font-size="7" fill="#484f58"
-        font-style="italic">EKF · Bayesian state estimate</text>
-
-  <!-- ── Signal: Overseer → Prompt ── -->
-  <line x1="450" y1="103" x2="554" y2="103" class="sf-g" marker-end="url(#ag)"/>
-  <text x="502" y="96" text-anchor="middle" font-size="7.5" fill="#2ea043">deterrent u_v</text>
-
-  <!-- ══════════════ SECTION 3: PROMPT MODIFICATION ══════════════ -->
-
-  <!-- Document shell -->
-  <rect x="572" y="22" width="232" height="160" rx="8"
+  <!-- ══════════════ MODULE 3 — PROMPT MODIFICATION ══════════════ -->
+  <!-- Abstract document outline -->
+  <rect x="650" y="95" width="114" height="82" rx="6"
         fill="#161b22" stroke="#30363d" stroke-width="1"/>
-  <!-- Title bar -->
-  <rect x="572" y="22" width="232" height="20" rx="8" fill="#21262d"/>
-  <rect x="572" y="35"  width="232" height="7"  fill="#21262d"/>
-  <!-- Traffic lights -->
-  <circle cx="586" cy="32" r="3.5" fill="#f85149" opacity="0.7"/>
-  <circle cx="598" cy="32" r="3.5" fill="#d29922" opacity="0.7"/>
-  <circle cx="610" cy="32" r="3.5" fill="#3fb950" opacity="0.7"/>
-  <text x="688" y="36" text-anchor="middle" font-size="7.5"
-        fill="#8b949e" font-family="monospace">system_prompt.txt</text>
+  <!-- Three colored bar sets that cycle through green / red / amber -->
+  <rect class="pba" x="661" y="106" width="90" height="7" rx="3" fill="#238636"/>
+  <rect class="pba" x="661" y="117" width="68" height="7" rx="3" fill="#238636"/>
+  <rect class="pbb" x="661" y="106" width="90" height="7" rx="3" fill="#da3633"/>
+  <rect class="pbb" x="661" y="117" width="68" height="7" rx="3" fill="#da3633"/>
+  <rect class="pbc" x="661" y="106" width="90" height="7" rx="3" fill="#b08800"/>
+  <rect class="pbc" x="661" y="117" width="68" height="7" rx="3" fill="#b08800"/>
+  <!-- Static neutral bars -->
+  <rect x="661" y="130" width="55" height="5" rx="2.5" fill="#21262d"/>
+  <rect x="661" y="139" width="78" height="5" rx="2.5" fill="#21262d"/>
+  <rect x="661" y="148" width="62" height="5" rx="2.5" fill="#21262d"/>
+  <rect x="661" y="157" width="42" height="5" rx="2.5" fill="#21262d"/>
+  <!-- Label -->
+  <text x="707" y="203" text-anchor="middle" font-size="9.5"
+        font-weight="600" fill="#e6edf3">Prompt Modification</text>
+  <text x="707" y="217" text-anchor="middle" font-size="7.5"
+        fill="#8b949e">adapts · modulates · steers</text>
 
-  <!-- State: full assist (green) -->
-  <g class="pv-a">
-    <text x="585" y="60" font-size="7.5" fill="#3fb950" font-family="monospace">● mode: full_assist</text>
-    <rect x="585" y="65"  width="130" height="5" rx="2" fill="#238636" opacity=".80"/>
-    <rect x="585" y="74"  width="100" height="5" rx="2" fill="#238636" opacity=".60"/>
-    <rect x="585" y="83"  width="148" height="5" rx="2" fill="#238636" opacity=".45"/>
-    <rect x="585" y="92"  width="82"  height="5" rx="2" fill="#238636" opacity=".35"/>
-    <rect x="585" y="101" width="118" height="5" rx="2" fill="#238636" opacity=".25"/>
-    <rect x="585" y="110" width="95"  height="5" rx="2" fill="#238636" opacity=".18"/>
-    <text x="585" y="136" font-size="7.5" fill="#3fb950" font-family="monospace" opacity=".8">→ complete solution</text>
-    <text x="585" y="147" font-size="7.5" fill="#3fb950" font-family="monospace" opacity=".4">→ step-by-step output</text>
-  </g>
-
-  <!-- State: full deferral (red) -->
-  <g class="pv-d">
-    <text x="585" y="60" font-size="7.5" fill="#f85149" font-family="monospace">● mode: full_deferral</text>
-    <rect x="585" y="65"  width="115" height="5" rx="2" fill="#da3633" opacity=".80"/>
-    <rect x="585" y="74"  width="88"  height="5" rx="2" fill="#da3633" opacity=".60"/>
-    <rect x="585" y="83"  width="138" height="5" rx="2" fill="#da3633" opacity=".45"/>
-    <rect x="585" y="92"  width="70"  height="5" rx="2" fill="#da3633" opacity=".35"/>
-    <rect x="585" y="101" width="125" height="5" rx="2" fill="#da3633" opacity=".25"/>
-    <rect x="585" y="110" width="104" height="5" rx="2" fill="#da3633" opacity=".18"/>
-    <text x="585" y="136" font-size="7.5" fill="#f85149" font-family="monospace" opacity=".8">→ teach prerequisites</text>
-    <text x="585" y="147" font-size="7.5" fill="#f85149" font-family="monospace" opacity=".4">→ withhold answer</text>
-  </g>
-
-  <!-- State: partial help (amber) -->
-  <g class="pv-p">
-    <text x="585" y="60" font-size="7.5" fill="#d29922" font-family="monospace">● mode: partial_help</text>
-    <rect x="585" y="65"  width="122" height="5" rx="2" fill="#b08800" opacity=".80"/>
-    <rect x="585" y="74"  width="145" height="5" rx="2" fill="#b08800" opacity=".60"/>
-    <rect x="585" y="83"  width="88"  height="5" rx="2" fill="#b08800" opacity=".45"/>
-    <rect x="585" y="92"  width="110" height="5" rx="2" fill="#b08800" opacity=".35"/>
-    <rect x="585" y="101" width="78"  height="5" rx="2" fill="#b08800" opacity=".25"/>
-    <rect x="585" y="110" width="134" height="5" rx="2" fill="#b08800" opacity=".18"/>
-    <text x="585" y="136" font-size="7.5" fill="#d29922" font-family="monospace" opacity=".8">→ first step only</text>
-    <text x="585" y="147" font-size="7.5" fill="#d29922" font-family="monospace" opacity=".4">→ Socratic guidance</text>
-  </g>
-
-  <text x="688" y="190" text-anchor="middle" font-size="7" fill="#484f58"
-        font-style="italic">Gemini 2.5 Flash · modulated via u_v ∈ [0,1]</text>
+  <!-- ── Footer ── -->
+  <text x="557" y="253" text-anchor="middle" font-size="7" fill="#30363d"
+        font-family="monospace" letter-spacing=".5">APAI · Autonomy Preserving AI</text>
 </svg>
